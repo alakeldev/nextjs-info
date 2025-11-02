@@ -1,6 +1,6 @@
-# 📚 Next.js Comprehensive Guide
-
 <div align="center">
+
+# 📚 Next.js Comprehensive Guide
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -1004,15 +1004,12 @@ Client Components are responsible for the interactivity of your application; use
 
 ---
 
-
 # 📊 Data Fetching with Next.js
 
 In a Next.js app, we can fetch data on the server as well as the client. There will be circumstances when fetching data on the client is inevitable, but ideally, data should be fetched on the server. Since the server has direct access to the databases, the client-server waterfalls can be reduced by fetching data on the server. Additionally, when server components are used, data can be fetched and rendered in the same environment.
 
 Fetching data on the server also means that we can avoid exposing sensitive data to the client. However, this can also create a false sense of security. Server components may render on the client if they are used in a client component template. Although this flexibility is by design, it can lead to the exposure of sensitive data if, for example, API credentials used when data fetching in a server component are included in the client bundle. To prevent these critical scenarios, we’ll take a look at how to use the 'server-only' package to ensure that certain server-specific code
 modules are never imported into client components.
-
-
 
 ## 🖥️ Data Fetching on the Client
 
@@ -1078,10 +1075,6 @@ export async function POST(request: Request) {
   return Response.json(newUser, { status: 201 });
 }
 ```
-
-
-
-
 
 ## 🖥️ Data Fetching on the Server 
 
@@ -1154,8 +1147,6 @@ export default async function Home() {
 ```
 
 
-
-
 ## ⚡ Parallel vs Sequential Data Fetching
 
 There are two data fetching patterns when working with React components: parallel and sequential.
@@ -1164,8 +1155,6 @@ There are two data fetching patterns when working with React components: paralle
 
 
 * When using the sequential data fetching pattern, requests create waterfalls as they happen one after the other. We might choose to sequentially load data when a data fetch needs to depend on the result of another fetch.
-
-
 
 
 ## 🚀 Preloading Data
@@ -1215,8 +1204,6 @@ export default function Home() {
 
 
 Here, given that getPosts() function is called inside the <Posts> component, the preload() function will trigger the fetch and have the data cached before it needs to be used within the <Posts> component.
-
-
 
 
 ## 🔄 Revalidating Data
@@ -1297,8 +1284,6 @@ export default async function EditPost(){
 In the above code, we provide the updatePost() server action as the value of the form’s action attribute.
 
 
-
-
 ## 🔄 Loading UI
 
 Fetching large amounts of data can take time. This is where loading UIs will be helpful, as an instant loading state can be rendered in place of a segment while data loads. Loading UIs provide visual feedback to the users that the data is currently being fetched. A loading UI can be a spinner, a skeleton, a progress indicator, or a loading message. 
@@ -1318,8 +1303,6 @@ export default function Loading(){
 In the above code example, we have our <Loading> component display “Loading data…” as our loading message.
 
 We can then use the <Loading> component as the fallback of a <Suspense> boundary, which we’ll look more closely at in the next exercise.
-
-
 
 
 ## 🌊 Streaming
@@ -1355,9 +1338,6 @@ We can provide a loading UI as the fallback of each <Suspense> boundary. The loa
 Here, until our <UserPosts> component is ready to be rendered, the loading UI defined in the <Loading> component will be displayed in place.
 
 
-
-
-
 ## 📝 Server-Only Forms
 
 We’ve looked at how to fetch and use data in our Next.js apps. Now, let’s take a look at how we can get, validate, and process user data.
@@ -1389,12 +1369,11 @@ export default function FeedbackForm(){
 }
 ```
 
-
 In the above code, we have a form that has three fields:
 
-    A required name input field of text type.
-    An email input field of email type.
-    A required feedback text area.
+  - A required name input field of text type.
+  - An email input field of email type.
+  - A required feedback text area.
 
 Here, we use HTML form validation by setting the appropriate type for each field and using the required validation where necessary.
 
@@ -1415,7 +1394,6 @@ export async function handleFeedback( formData: FormData ){
 }
 ```
 
-
 In the above code, we create a file called actions.ts in the same folder where our <FeedbackForm> component is located. The handleFeedback() function will accept and process the form data.
 
 Now that we’ve defined the Server Action, we can import and call it as the action attribute of <form>.
@@ -1432,7 +1410,6 @@ export default function FeedbackForm(){
   )
 }
 ```
-
 
 Here, we’ve imported the handleFeedback() function from actions.ts and passed the function as the value of the action attribute of the <form> element.
 
@@ -1459,21 +1436,21 @@ In our example code above, after the form data has been processed, we call the r
 
 In this lesson, we learned how to fetch data both on the server and the client. Let’s review:
 
-    Data should ideally be fetched on the server as the server has direct access to the database, client-server waterfalls can be reduced, data can be fetched and rendered in the same environment, and security is increased as sensitive data can remain unexposed to the client.
-    Route Handlers are used to define custom request handlers for fetching data on the client.
-    fetch() can directly be called within a server component.
-    The 'server-only' package is used to prevent a server component from being sent to the client.
-    By default, Next.js will automatically cache the fetched data. To disable cache, 'cache: 'no-store' is passed in the options object of a fetch call.
-    When using the sequential data fetching pattern, requests create waterfalls as they happen one after the other.
-    When using a parallel data fetching pattern, requests in a route happen at the same time.
-    Parallel data fetching patterns can be optimized by preloading data.
-    Cached data can be revalidated in two ways: time-based revalidation and on-demand revalidation.
-    Time-based revalidation revalidates data after a specified duration of time in seconds.
-    A Server Action is an asynchronous function executed on the server. To create a server action, use the 'use server' directive.
-    On-demand revalidation revalidates data based on a path or a tag when a particular event is triggered.
-    Loading UIs are rendered in place of a segment while data loads.
-    Streaming using <Suspense> boundaries allows a web app to progressively render and incrementally stream parts of the UI to the client.
-    Server-only forms can be created in a server component and using Server Actions.
+  - Data should ideally be fetched on the server as the server has direct access to the database, client-server waterfalls can be reduced, data can be fetched and rendered in the same environment, and security is increased as sensitive data can remain unexposed to the client.
+  - Route Handlers are used to define custom request handlers for fetching data on the client.
+  - fetch() can directly be called within a server component.
+  - The 'server-only' package is used to prevent a server component from being sent to the client.
+  - By default, Next.js will automatically cache the fetched data. To disable cache, 'cache: 'no-store' is passed in the options object of a fetch call.
+  - When using the sequential data fetching pattern, requests create waterfalls as they happen one after the other.
+  - When using a parallel data fetching pattern, requests in a route happen at the same time.
+  - Parallel data fetching patterns can be optimized by preloading data.
+  - Cached data can be revalidated in two ways: time-based revalidation and on-demand revalidation.
+  - Time-based revalidation revalidates data after a specified duration of time in seconds.
+  - A Server Action is an asynchronous function executed on the server. To create a server action, use the 'use server' directive.
+  - On-demand revalidation revalidates data based on a path or a tag when a particular event is triggered.
+  - Loading UIs are rendered in place of a segment while data loads.
+  - Streaming using <Suspense> boundaries allows a web app to progressively render and incrementally stream parts of the UI to the client.
+  - Server-only forms can be created in a server component and using Server Actions.
 
 
 ### Optimizing with Next.js
@@ -1482,33 +1459,28 @@ Next.js offers essential optimization features for enhancing website performance
 
 The following are considerations to think about when optimizing web pages:
 
-    Improve Core Web Vitals: Core Web Vitals, introduced by Google, are three key metrics measuring webpage speed, interactivity, and visual stability. High scores enhance user experience and SEO.
-        Largest Contentful Paint (LCP): Measures the time from when a user navigates to a page until its largest content item is displayed. Ideal pages load their largest content in under 2.5 seconds. The goal is to reduce load times.
-        First Input Delay (FID): Measures the time taken to respond to a user interaction, such as clicking a link or calling a JavaScript function. The ideal webpage will respond to user interactions in under 100ms. The aim is to enhance user interactivity.
-        Cumulative Layout Shift (CLS): Measures the largest burst of layout shift scores for every unexpected layout shift during a page’s lifecycle. A layout shift occurs when a visible element changes position. Ideal webpages will have a CLS score under 0.1. The objective of CLS is to improve visual stability.
-    Layout Shift: Proactively manage media to ensure elements are loaded properly, stay in place, and provide a stable shift-free user experience.
-    Search Engine Optimization (SEO): Improve search engine rankings of web pages with properly optimized metadata.
-    Scalability and Cost Reduction: Optimizing resources, reducing unnecessary overhead, and improving various development strategies.
-    Mobile Optimization: Ensure that user experiences are consistent across all devices and view sizes.
-    Developer Maintenance and Efficient Development: Cleaner code, better architecture, and smoother workflows.
+  - Improve Core Web Vitals: Core Web Vitals, introduced by Google, are three key metrics measuring webpage speed, interactivity, and visual stability. High scores enhance user experience and SEO.
+  - Largest Contentful Paint (LCP): Measures the time from when a user navigates to a page until its largest content item is displayed. Ideal pages load their largest content in under 2.5 seconds. The goal is to reduce load times.
+  - First Input Delay (FID): Measures the time taken to respond to a user interaction, such as clicking a link or calling a JavaScript function. The ideal webpage will respond to user interactions in under 100ms. The aim is to enhance user interactivity.
+  - Cumulative Layout Shift (CLS): Measures the largest burst of layout shift scores for every unexpected layout shift during a page’s lifecycle. A layout shift occurs when a visible element changes position. Ideal webpages will have a CLS score under 0.1. The objective of CLS is to improve visual stability.
+  - Layout Shift: Proactively manage media to ensure elements are loaded properly, stay in place, and provide a stable shift-free user experience.
+  - Search Engine Optimization (SEO): Improve search engine rankings of web pages with properly optimized metadata.
+  - Scalability and Cost Reduction: Optimizing resources, reducing unnecessary overhead, and improving various development strategies.
+  - Mobile Optimization: Ensure that user experiences are consistent across all devices and view sizes.
+  - Developer Maintenance and Efficient Development: Cleaner code, better architecture, and smoother workflows.
 
 With those considerations in mind for the following exercises, we’ll use Next.js’ built-in optimization tools to optimize:
 
-    image loading and resizing
-    font loading and creation
-    script importing and usage
-    metadata creation
-
-
-
-
-
+  - image loading and resizing
+  - font loading and creation
+  - script importing and usage
+  - metadata creation
 
 ## 🖼️ Images and Priority
 
 Optimizing webpages can reduce LCP, significantly improving user experience. A broad list of common culprits include <img>, <Image>, <video>, <url>, url() calls, any text blocks, and animated images.
 
-    Remember, LCP (Largest Contentful Paint) is the time from when a user navigates to a page until its largest content item is displayed.
+  - Remember, LCP (Largest Contentful Paint) is the time from when a user navigates to a page until its largest content item is displayed.
 
 LCP is calculated using each element’s visible size. The only exceptions are images. If an image is resized larger, it will report its original size. If resized smaller, it reports the smaller size.
 
@@ -1520,9 +1492,9 @@ Although FCP indicates initial load times, web developers focus on LCP due to im
 
 Next.js optimizes images using their <Image> component, which extends the HTML <img> element with features for automatic optimization. These optimization features include:
 
-    Size Optimization: Correctly sized images reduce unexpected layout shifts.
-    Faster Page Loads: Images are only loaded when displayed on the webpage.
-    Image Flexibility: Can resize any image as needed.
+  - Size Optimization: Correctly sized images reduce unexpected layout shifts.
+  - Faster Page Loads: Images are only loaded when displayed on the webpage.
+  - Image Flexibility: Can resize any image as needed.
 
 In this exercise, we’ll focus on improving image and page load times. In the next exercise, we’ll focus on optimizing image sizing.
 
@@ -1546,7 +1518,6 @@ function localImage() {
 export default localImage;
 ```
 
-
 Remote images require specified width and height attributes and an updated src property with the online URL.
 
 ```tsx
@@ -1568,15 +1539,11 @@ If we know that an image is the LCP, we can assign it the priority property. Nex
 />
 ```
 
-
-
-
-
 ## 📐 Image Sizes
 
 Images can be further optimized by sizing them appropriately to prevent layout shifts and maintain aspect ratio. Sizing images occurs in three methods: automatically, explicitly, and implicitly.
 
-    Automatic sizing is letting the webpage handle the Image size without setting a width or height. Automatic sizing is only applicable to local images because Next.js is unable to deduce image dimensions for remote images. Next.js uses static imports to automatically size local images.
+  - Automatic sizing is letting the webpage handle the Image size without setting a width or height. Automatic sizing is only applicable to local images because Next.js is unable to deduce image dimensions for remote images. Next.js uses static imports to automatically size local images.
 
 ```tsx
 import Image from 'next/image'
@@ -1599,7 +1566,7 @@ export default function Page() {
 }
 
 
-    Explicit sizing defines both the width and height. Next.js explicit sizing is identical to HTML <img> sizing.
+  - Explicit sizing defines both the width and height. Next.js explicit sizing is identical to HTML <img> sizing.
 
 ```tsx
 import Image from 'next/image'
@@ -1618,7 +1585,7 @@ export default function Page() {
 
 
 
-    Implicit sizing stretches the images to fill its parent. Next.js uses the fill property to expand the image to fill its parent element.
+  - Implicit sizing stretches the images to fill its parent. Next.js uses the fill property to expand the image to fill its parent element.
 
 ```tsx
 import Image from 'next/image'
@@ -1635,13 +1602,13 @@ export default function Page() {
 ```
 
 
-    Remember, to improve LCP, we want to make sure there is enough space such that an image does not unexpectedly move other elements. 
+  - Remember, to improve LCP, we want to make sure there is enough space such that an image does not unexpectedly move other elements. 
 
 The last consideration when optimizing images is cybersecurity. Malicious actors are always out to disrupt web pages. Fortunately, the <Image> component contains two primary configuration options to protect against online attackers: remotePatterns and loaderFile.
 
-    remotePatterns: Allows Next.js applications to request only certain resources or allow certain directory paths. This configuration permits wildcards in the path if requesting images with varied names.
+  - remotePatterns: Allows Next.js applications to request only certain resources or allow certain directory paths. This configuration permits wildcards in the path if requesting images with varied names.
 
-    Here is an example that only allows images using the https protocol accessed from https://awsBucket123.com/myImages/. Any other access point will return a 400 Bad Request.
+  - Here is an example that only allows images using the https protocol accessed from https://awsBucket123.com/myImages/. Any other access point will return a 400 Bad Request.
 
 ```javascript
 /* next.config.js */
@@ -1697,13 +1664,13 @@ Next.js identifies and establishes all project fonts at build time, no additiona
 
 Fonts are not globally available to each component. Fonts are accessible depending on where the font is created.
 
-    If placed on the root layout, it is available on all routes
-    If placed on a different layout, it is available on all routes wrapped by that layout
-    If placed on an individual page, it is preloaded on the unique route for that page
+  - If placed on the root layout, it is available on all routes
+  - If placed on a different layout, it is available on all routes wrapped by that layout
+  - If placed on an individual page, it is preloaded on the unique route for that page
 
 Local fonts are created using the localFont() function call. Google fonts are created by importing them from 'next/font/google'. The following is an example of how to create a local font and a Google font using the Font module.
 
-    You can reference the Next.js Github Google Fonts list to find available Google fonts. 
+  - You can reference the Next.js Github Google Fonts list to find available Google fonts. 
 
 ```typescript
 /* Local Font */
@@ -1724,9 +1691,9 @@ const comfortaa = Comfortaa({
 
 Each time a font is created using localFont() or 'next/font/google', it creates a new instance of a font in an application. This can result in multiple instances of the same font if created in various files. Instead, we can reuse a font, optimizing the Next.js application. There are 3 steps to reuse fonts.
 
-    Create a font loader in a shared file
-    Export the font loader as a constant
-    Import the constant in each file you would like to use this font
+  - Create a font loader in a shared file
+  - Export the font loader as a constant
+  - Import the constant in each file you would like to use this font
 
 ```typescript
 /* Loader.ts */
@@ -1752,7 +1719,7 @@ export default function Home() {
 
 Next.js also optimized importing third-party scripts with the `<Script>` component. It ensures that scripts are loaded only one time, even if referenced in multiple files.
 
-    Remember, the FID is the First Input Delay. It measures the time taken for a webpage to respond to user interactions. 
+  - Remember, the FID is the First Input Delay. It measures the time taken for a webpage to respond to user interactions. 
 
 The `<Script>` component minimizes the FID by reducing script load times. Scripts are preloaded by Next.js, preparing them to be executed when called upon.
 
@@ -1767,16 +1734,16 @@ The following is an example of how to load a script.
 
 We can further calibrate how the scripts are loaded. Depending on how busy a webpage is, scripts can be loaded at different times to ensure it doesn’t block other components, maintaining user interactivity and optimizing FID. There are four (4) ways to modify script loading via the strategy property.
 
-    beforeInteractive: Loads the script before Next.js code is executed and before page hydration
-    afterInteractive: (default) Loads the script immediately after the page becomes interactive, after the initial page hydration
-    lazyOnload: Load the script later during the browser’s idle time
-    worker: Delegate script handling to a web worker (this is experimental)
+  - beforeInteractive: Loads the script before Next.js code is executed and before page hydration
+  - afterInteractive: (default) Loads the script immediately after the page becomes interactive, after the initial page hydration
+  - lazyOnload: Load the script later during the browser’s idle time
+  - worker: Delegate script handling to a web worker (this is experimental)
 
 It can be helpful to know when the script is loaded. In Next.js, there are three (3) event handlers available to the `<Script>` component.
 
-    onLoad(): Execute code after the script loads
-    onReady(): Execute code after the script has finished loading and every time the component is mounted
-    onError(): Execute code if the script fails to load
+  - onLoad(): Execute code after the script loads
+  - onReady(): Execute code after the script has finished loading and every time the component is mounted
+  - onError(): Execute code if the script fails to load
 
 ```tsx
 /* app/page.tsx */
@@ -1811,14 +1778,14 @@ The last optimization feature is the Metadata API. The Metadata API helps define
 
 We can define a Metadata object in two 2:
 
-    Config-based metadata
-    File-based metadata
+  - Config-based metadata
+  - File-based metadata
 
 This exercise will introduce Config-based metadata and the next exercise will introduce File-based metadata.
 
 Config-based metadata focuses on adding metadata to individual pages, such as a title or description. This metadata is created using a static Metadata object or a dynamic generateMetadata() function call in layout.tsx or page.tsx. We’ll create 2 instances of Config-based metadata using the Next.js Metadata API.
 
-    Static Metadata object. Static metadata is used when the metadata object will not change.
+  - Static Metadata object. Static metadata is used when the metadata object will not change.
 
 ```typescript
 import type { Metadata } from 'next'
@@ -1849,16 +1816,16 @@ export function generateMetadata({ params }) {
 
 Next.js also uses File-based metadata to optimize webpage accessibility. File-based metadata optimizes metadata through specific files:
 
-    robots.txt: Information showing site structure and permitting search engine crawlers
-    sitemap.xml: Assists in indexing websites and information regarding webpage timelines
-    favicon.ico, apple-icon.jpg, icon.jpg: Optimized to add icons to webpage tabs
-    opengraph-image.jpg, twitter-image.jpg: Assists in images when users share your webpage
+  - robots.txt: Information showing site structure and permitting search engine crawlers
+  - sitemap.xml: Assists in indexing websites and information regarding webpage timelines
+  - favicon.ico, apple-icon.jpg, icon.jpg: Optimized to add icons to webpage tabs
+  - opengraph-image.jpg, twitter-image.jpg: Assists in images when users share your webpage
 
 File-based metadata has a higher priority and will override config-based metadata. We’ll focus on robots.txt and sitemap.xml to create 2 instances of File-based metadata using the Next.js Metadata API.
 
-    robots.txt: robots.txt is a file in the root directory of the application to tell search engine crawlers which URLs they are allowed to access.
+  - robots.txt: robots.txt is a file in the root directory of the application to tell search engine crawlers which URLs they are allowed to access.
 
-    We can generate a robots.txt programmatically with robots.ts. Here is an example of a Robots object, indicating which pages are permitted to be crawled. This example allows crawlers to access any route starting with the main route '/' while prohibiting access to the '/private route.
+  - We can generate a robots.txt programmatically with robots.ts. Here is an example of a Robots object, indicating which pages are permitted to be crawled. This example allows crawlers to access any route starting with the main route '/' while prohibiting access to the '/private route.
 
 ```typescript
 import { MetadataRoute } from 'next'
@@ -1911,19 +1878,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
 Metadata is evaluated in a specific order, starting from the root segment and going to each page. Metadata objects exported from multiple pages in the same route are shallowly combined to create a final metadata output. Duplicate metadata objects are removed based on ordering. 
 
 
-Review Optimization Section:
+### Review Optimization Section:
 
 Great work! You’ve learned how to optimize Next.js applications using images, scripts, fonts, and metadata.
 
 Throughout the exercises, a Lighthouse score was presented to you. In order, those scores were:
 
-Images and Priority:    54 -> 88
-Images and Sizing:      88 -> 95
-Fonts:                  95 -> 97
-Scripts:                97 -> 98
-Config-Based Metadata:  98 -> 98
-File-Based Metadata:    98 -> 98
-
+- Images and Priority:    54 -> 88
+- Images and Sizing:      88 -> 95
+- Fonts:                  95 -> 97
+- Scripts:                97 -> 98
+- Config-Based Metadata:  98 -> 98
+- File-Based Metadata:    98 -> 98
 
 As noted in the first exercise, images drastically impact LCP. Conversely, metadata has a smaller impact because the files were pre-built with minor changes throughout the exercise.
 
@@ -1945,21 +1911,20 @@ Let’s recap:
 
 ###### Next.js Deployment with Vercel:
 
-
 Before Deploying
 
 We’ve finished building our Next.js application, and we’d like to share it with others by deploying an optimized version of our application. Next.js makes getting our application deployment ready straightforward by providing the following:
 
-    Out-of-the-box configurations like prefetching and code splitting.
-    Built-in features like <Link> components.
-    A next build command that generates a production-ready build.
+  - Out-of-the-box configurations like prefetching and code splitting.
+  - Built-in features like <Link> components.
+  - A next build command that generates a production-ready build.
 
 Once we have an optimized build, we need to decide how we want to deploy our application. Next.js applications can be deployed in various ways like:
 
-    Self-hosting in a Node.js server.
-    Using a docker container.
-    A limited static export.
-    Using managed services like Cloudflare and Vercel.
+  - Self-hosting in a Node.js server.
+  - Using a docker container.
+  - A limited static export.
+  - Using managed services like Cloudflare and Vercel.
 
 In this article, we will deploy our Next.js application using a UNIX command line interface (CLI) and by connecting a git remote repo using Vercel.
 Deploying To Vercel
@@ -1968,20 +1933,18 @@ Vercel is a front-end cloud provider and creator/maintainer of the Next.js frame
 
 We can deploy our Next.js applications to Vercel using the vercel CLI tool by:
 
-    Installing the vercel CLI tool.
-    Authenticating vercel with our Vercel account.
-    Executing the vercel --prod command in our repo to deploy our application to production.
-    Creating a feature branch and running the vercel command to deploy to a preview deployment.
+  - Installing the vercel CLI tool.
+  - Authenticating vercel with our Vercel account.
+  - Executing the vercel --prod command in our repo to deploy our application to production.
+  - Creating a feature branch and running the vercel command to deploy to a preview deployment.
 
 Alternatively, we can deploy to Vercel using a GitHub repo by:
 
-    Creating a new project in Vercel by setting up a connection to our GitHub account.
-    Selecting the GitHub repo to deploy.
-    Designating a production branch in our GitHub repo and deploying it to production.
-    Creating automatic preview deployments by pushing feature branches to our GitHub repo.
-    Creating automatic production deployments by merging pull requests to our production branch.
-
-
+  - Creating a new project in Vercel by setting up a connection to our GitHub account.
+  - Selecting the GitHub repo to deploy.
+  - Designating a production branch in our GitHub repo and deploying it to production.
+  - Creating automatic preview deployments by pushing feature branches to our GitHub repo.
+  - Creating automatic production deployments by merging pull requests to our production branch.
 
 
 ###### Next.js Deployment with Cloudflare
@@ -1990,16 +1953,16 @@ Before Deploying
 
 We’ve finished building our Next.js application, and we’d like to share it with others by deploying an optimized version of our application. Next.js makes getting our application deployment ready straightforward by providing the following:
 
-    Out-of-the-box configurations like prefetching and code splitting.
-    Built-in features like <Link> components.
-    A next build command that generates a production-ready build.
+  - Out-of-the-box configurations like prefetching and code splitting.
+  - Built-in features like <Link> components.
+  - A next build command that generates a production-ready build.
 
 Once we have an optimized build, we need to decide how we want to deploy our application. Next.js applications can be deployed in various ways like:
 
-    Self-hosting in a Node.js server.
-    Using a docker container.
-    A limited static export.
-    Using managed services like Cloudflare and Vercel.
+  - Self-hosting in a Node.js server.
+  - Using a docker container.
+  - A limited static export.
+  - Using managed services like Cloudflare and Vercel.
 
 In this article, we will deploy our Next.js application using a UNIX command line interface (CLI) and by connecting a git remote repo using Cloudflare.
 Deploying To Cloudflare
@@ -2008,25 +1971,25 @@ Cloudflare Pages is a front-end hosting service provided by Cloudflare. Before d
 
 We can deploy our Next.js applications to Cloudflare Pages using the wrangler CLI (a tool used to manage Cloudflare Workers and Pages) by:
 
-    Enabling the edge runtime in Next.js applications.
-    Installing the wrangler CLI tool.
-    Authenticating wrangler with our Cloudflare account.
-    Creating a new Cloudflare Page.
-    Setting the nodejs_compat compatibility flag to enable Node.js in Cloudflare Pages.
-    Installing and using the @cloudflare/next-on-pages adapter to build our Next.js application so they can be deployed in Cloudflare Pages.
-    Creating preview deployments based on feature branches.
-    Creating local deployments with the edge runtime.
-    Using npm create cloudflare/latest to create and deploy a new Next.js project all in one go.
+  - Enabling the edge runtime in Next.js applications.
+  - Installing the wrangler CLI tool.
+  - Authenticating wrangler with our Cloudflare account.
+  - Creating a new Cloudflare Page.
+  - Setting the nodejs_compat compatibility flag to enable Node.js in Cloudflare Pages.
+  - Installing and using the @cloudflare/next-on-pages adapter to build our Next.js application so they can be deployed in Cloudflare Pages.
+  - Creating preview deployments based on feature branches.
+  - Creating local deployments with the edge runtime.
+  - Using npm create cloudflare/latest to create and deploy a new Next.js project all in one go.
 
 Alternatively, we can deploy to Cloudflare pages using a GitHub repo by:
 
-    Setting up a Cloudflare Page connection to our GitHub account.
-    Selecting the GitHub repo to deploy.
-    Selecting the production branch.
-    Selecting the Next.js framework preset.
-    Enabling the nodejs_compat compatibility flag for production and preview deployments in the Cloudflare Page function settings.
-    Creating automatic preview deployments by pushing feature branches to our repo.
-    Creating automatic production deployments by merging pull requests into our production branch.
+  - Setting up a Cloudflare Page connection to our GitHub account.
+  - Selecting the GitHub repo to deploy.
+  - Selecting the production branch.
+  - Selecting the Next.js framework preset.
+  - Enabling the nodejs_compat compatibility flag for production and preview deployments in the Cloudflare Page function settings.
+  - Creating automatic preview deployments by pushing feature branches to our repo.
+  - Creating automatic production deployments by merging pull requests into our production branch.
 
 ---
 
@@ -2042,6 +2005,27 @@ Alternatively, we can deploy to Cloudflare pages using a GitHub repo by:
 | **💬 Community** | Discussion forum and support | [GitHub Discussions](https://github.com/vercel/next.js/discussions) |
 | **🎓 Learn More** | Advanced tutorials and courses | [Next.js Learn](https://nextjs.org/learn) |
 | **📝 Blog** | Latest updates and best practices | [Vercel Blog](https://vercel.com/blog) |
+
+</div>
+
+---
+
+## 🔗 **Related Technologies & References:**
+
+<div align="center">
+
+### 🌐 **Web Development History**
+| **Resource** | **Description** | **Link** |
+|--------------|-----------------|----------|
+| **🏛️ First Website** | The world's first website at CERN | [CERN Info](https://info.cern.ch/hypertext/WWW/TheProject.html) |
+| **🎨 Design Museum** | Evolution of web design through history | [Web Design Museum](https://www.webdesignmuseum.org/) |
+
+### 📘 **TypeScript Configuration**
+| **Resource** | **Description** | **Link** |
+|--------------|-----------------|----------|
+| **⚙️ TSConfig Reference** | Complete TypeScript configuration guide | [TypeScript TSConfig](https://www.typescriptlang.org/tsconfig/) |
+| **📚 TSConfig Tutorial** | Learn about tsconfig.json file structure | [Codecademy TSConfig](https://www.codecademy.com/courses/learn-typescript/articles/the-tsconfig-json-file) |
+| **🔧 Compiler Options** | Detailed compiler options documentation | [TypeScript Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html) |
 
 </div>
 
